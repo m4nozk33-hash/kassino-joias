@@ -25,9 +25,9 @@ h2{font-size:clamp(1.6rem,5vw,2.3rem);line-height:1.2;margin-bottom:14px}
 .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,162,75,.28)}
 .btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
 header{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:84px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:108px}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo img{height:64px;width:auto;display:block}
+.logo img{height:96px;max-width:min(55vw,340px);width:auto;object-fit:contain;display:block}
 .logo-fallback{display:none;align-items:center;gap:12px}
 .logo-fallback .k{width:52px;height:52px;border:1.5px solid var(--gold);border-radius:10px;display:grid;place-items:center;font:500 2rem Georgia,serif;color:var(--gold)}
 .logo-fallback .brand{font-size:1.45rem;line-height:1.1;color:var(--gold)}
@@ -41,6 +41,9 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;min-h
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
 .card h3{color:var(--gold2);font-size:1.3rem;margin-bottom:6px}
 .card p{color:var(--muted);font-size:.98rem}
+.material-card{cursor:pointer;text-align:left;color:inherit;font:inherit;width:100%;transition:border-color .2s,transform .2s}
+.material-card:hover,.material-card:focus-visible{border-color:var(--gold2);transform:translateY(-2px)}
+.material-card small{display:block;color:var(--gold);margin-top:14px;font-size:.8rem}
 .icon{font-size:1.8rem;margin-bottom:10px;color:var(--gold)}
 .alt{background:var(--bg2);border-block:1px solid var(--line)}
 .step .n{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;color:var(--gold);font:500 1.1rem Georgia,serif;margin-bottom:12px}
@@ -58,6 +61,7 @@ footer .copy{margin-top:34px;font-size:.82rem;color:#6f695c}
 .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;width:62px;height:62px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 6px 22px rgba(0,0,0,.6);transition:transform .15s}
 .fab:hover{transform:scale(1.07)}
 .fab svg{width:34px;height:34px;fill:#fff}
+@media(max-width:719px){header .wrap{min-height:84px}.logo img{height:76px;max-width:70vw}}
 @media(min-width:720px){
  body{font-size:18px}
  section{padding:88px 0}
@@ -103,9 +107,9 @@ footer .copy{margin-top:34px;font-size:.82rem;color:#6f695c}
    <h2>O que você pode nos apresentar</h2>
    <div class="rule"></div>
    <div class="grid g3">
-    <div class="card"><div class="icon">◆</div><h3>Joias</h3><p>Anéis, alianças, brincos, pulseiras, colares e outras peças.</p></div>
-    <div class="card"><div class="icon">◆</div><h3>Ouro</h3><p>Peças em ouro, inteiras, quebradas ou fora de uso.</p></div>
-    <div class="card"><div class="icon">◆</div><h3>Prata</h3><p>Joias e objetos em prata que você deseja vender.</p></div>
+    <button class="card material-card" type="button" data-material="Joias"><div class="icon">◆</div><h3>Joias</h3><p>Anéis, alianças, brincos, pulseiras, colares e outras peças.</p><small>Quero vender este material →</small></button>
+    <button class="card material-card" type="button" data-material="Ouro"><div class="icon">◆</div><h3>Ouro</h3><p>Peças em ouro, inteiras, quebradas ou fora de uso.</p><small>Quero vender este material →</small></button>
+    <button class="card material-card" type="button" data-material="Prata"><div class="icon">◆</div><h3>Prata</h3><p>Joias e objetos em prata que você deseja vender.</p><small>Quero vender este material →</small></button>
    </div>
   </div>
  </section>
@@ -131,6 +135,10 @@ footer .copy{margin-top:34px;font-size:.82rem;color:#6f695c}
    <p class="note">Preencha os campos abaixo e continue no WhatsApp. Lá, você poderá enviar as fotos da peça na própria conversa. A avaliação e a negociação são feitas pela equipe.</p>
    <form id="form" novalidate>
     <div><label for="nome">Seu nome</label><input id="nome" name="nome" type="text" autocomplete="name" placeholder="Como podemos chamar você?" required></div>
+    <div><label for="rua">Rua / Avenida</label><input id="rua" name="rua" type="text" autocomplete="address-line1" placeholder="Informe o nome da sua rua" required></div>
+    <div><label for="numero">Número</label><input id="numero" name="numero" type="text" placeholder="Número do imóvel (ou S/N)" required></div>
+    <div><label for="bairro">Bairro</label><input id="bairro" name="bairro" type="text" autocomplete="address-level3" placeholder="Seu bairro" required></div>
+    <div><label for="cidade">Cidade</label><input id="cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Sua cidade" required></div>
     <div><label for="tipo">Tipo de material</label>
      <select id="tipo" name="tipo" required>
       <option value="">Selecione</option>
@@ -149,7 +157,7 @@ footer .copy{margin-top:34px;font-size:.82rem;color:#6f695c}
   <div class="grid g4">
    <div><h3>Telefone</h3><p id="fTel">[TELEFONE]</p></div>
    <div><h3>Endereço</h3><p>[ENDEREÇO DA LOJA]</p></div>
-   <div><h3>Horário de atendimento</h3><p>[HORÁRIO DE ATENDIMENTO]</p></div>
+   <div><h3>Horário de atendimento</h3><p>Atendimento 24 horas</p></div>
    <div><h3>Instagram</h3><p><a href="#" id="fIg" target="_blank" rel="noopener">[@INSTAGRAM]</a></p></div>
   </div>
   <p class="copy">© <span id="ano"></span> Kassino Joias. Todos os direitos reservados.</p>
@@ -168,8 +176,8 @@ const CONFIG = {
   // Texto exibido no rodapé (opcional, deixe como está se preferir)
   TELEFONE_EXIBIDO: "(44) 98415-1745",
   // Instagram: link completo e o @ exibido
-  INSTAGRAM_URL: "",
-  INSTAGRAM_TEXTO: "[@INSTAGRAM]",
+  INSTAGRAM_URL: "https://www.instagram.com/joiasmga/",
+  INSTAGRAM_TEXTO: "@joiasmga",
   // Mensagem do botão geral (sem formulário)
   MENSAGEM_PADRAO: "Olá! Vim pelo site da Kassino Joias e gostaria de solicitar uma avaliação da minha peça."
 };
@@ -187,15 +195,22 @@ document.querySelectorAll('[data-wa]').forEach(a=>{
   });
 });
 
+// Ao selecionar material, preencher e ir para o formulário
+document.querySelectorAll('[data-material]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.getElementById('tipo').value=btn.dataset.material;
+  document.getElementById('avaliacao').scrollIntoView({behavior:'smooth'});
+  setTimeout(()=>document.getElementById('nome').focus({preventScroll:true}),350);
+}));
+
 // Formulário
 const form=document.getElementById('form'), warn=document.getElementById('warn');
 form.addEventListener('submit',e=>{
   e.preventDefault();
-  const nome=form.nome.value.trim(), tipo=form.tipo.value, desc=form.desc.value.trim();
-  if(!nome||!tipo||!desc){ warn.textContent='Por favor, preencha seu nome, o tipo de material e a descrição da peça.'; warn.style.display='block'; return; }
+  const nome=document.getElementById('nome').value.trim(), rua=document.getElementById('rua').value.trim(), numero=document.getElementById('numero').value.trim(), bairro=document.getElementById('bairro').value.trim(), cidade=document.getElementById('cidade').value.trim(), tipo=document.getElementById('tipo').value, desc=document.getElementById('desc').value.trim();
+  if(!nome||!rua||!numero||!bairro||!cidade||!tipo||!desc){ warn.textContent='Por favor, preencha seu nome, endereço, material e descrição da peça.'; warn.style.display='block'; return; }
   if(!numeroValido()){ warn.textContent='O número do WhatsApp ainda não foi configurado (CONFIG.WHATSAPP_NUMBER).'; warn.style.display='block'; return; }
   warn.style.display='none';
-  const msg=`Olá! Vim pelo site da Kassino Joias e gostaria de solicitar uma avaliação.\n\n*Nome:* ${nome}\n*Material:* ${tipo}\n*Descrição da peça:* ${desc}\n\nVou enviar as fotos da peça aqui na conversa.`;
+  const msg=`Olá! Vim pelo site da Kassino Joias e gostaria de solicitar uma avaliação.\n\n*Nome:* ${nome}\n*Endereço:* ${rua}, ${numero} - ${bairro}, ${cidade}\n*Material:* ${tipo}\n*Descrição da peça:* ${desc}\n\nVou enviar as fotos da peça aqui na conversa.`;
   window.open(waLink(msg),'_blank','noopener');
 });
 
