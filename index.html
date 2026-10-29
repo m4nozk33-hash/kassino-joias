@@ -36,7 +36,13 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;min-h
 .hnav a{text-decoration:none}.hnav a:hover{color:var(--gold2)}
 .hero{padding:72px 0 80px;text-align:center;background:radial-gradient(ellipse at 50% 0,#2a2110 0,#000 65%)}
 .hero h1{font-size:clamp(2rem,8vw,3.6rem);line-height:1.15;margin:0 auto 18px;max-width:16ch}
-.hero p{color:var(--muted);max-width:52ch;margin:0 auto 32px;font-size:1.05rem}
+.hero p{color:var(--muted);max-width:52ch;margin:0 auto 24px;font-size:1.05rem}
+.hero .whatsapp-hint{margin:16px auto 0;color:var(--gold2);font-size:1.05rem;font-weight:650}
+.whatsapp-hint span{font-size:2rem;vertical-align:middle;display:inline-block;line-height:1;transform:translateY(5px)}
+.featured-evaluation{padding-top:48px;padding-bottom:64px;background:linear-gradient(180deg,#171205,#0e0e0e 75%)}
+.featured-evaluation h2{color:var(--gold2);font-size:clamp(2rem,6vw,3rem)}
+.featured-evaluation form{background:#13100b;border:1px solid #80682f;border-radius:20px;padding:clamp(18px,4vw,30px);box-shadow:0 12px 40px rgba(0,0,0,.28)}
+
 .grid{display:grid;gap:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
 .card h3{color:var(--gold2);font-size:1.3rem;margin-bottom:6px}
@@ -85,7 +91,7 @@ footer .copy{margin-top:34px;font-size:.82rem;color:#6f695c}
   <nav class="hnav" aria-label="Principal">
    <a href="#materiais">O que compramos</a>
    <a href="#como-funciona">Como funciona</a>
-   <a href="#avaliacao">Avaliação</a>
+   <a href="#avaliacao">Conte-nos sobre sua peça</a>
    <a href="#contato">Contato</a>
   </nav>
  </div>
@@ -97,7 +103,31 @@ footer .copy{margin-top:34px;font-size:.82rem;color:#6f695c}
    <p class="eyebrow">Compra e venda de joias, ouro e prata</p>
    <h1>Quer vender suas <span class="gold">joias, ouro ou prata?</span></h1>
    <p>Fale com a equipe da Kassino Joias pelo WhatsApp, conte sobre a sua peça e combine a avaliação de forma simples e direta.</p>
-   <a class="btn" data-wa href="#avaliacao" target="_blank" rel="noopener">Solicitar avaliação pelo WhatsApp</a>
+   <p class="whatsapp-hint">Entre em contato com a gente por aqui <span aria-hidden="true">↘</span></p>
+  </div>
+ </section>
+
+ <section id="avaliacao" class="alt featured-evaluation">
+  <div class="wrap">
+   <p class="eyebrow">Avaliação de ouro, prata e joias</p>
+   <h2>Conte-nos sobre a sua peça</h2>
+   <div class="rule"></div>
+   <p class="note">Preencha os campos abaixo e continue no WhatsApp. Lá, você poderá enviar as fotos da peça na própria conversa. A avaliação e a negociação são feitas pela equipe.</p>
+   <form id="form" novalidate>
+    <div><label for="nome">Seu nome</label><input id="nome" name="nome" type="text" autocomplete="name" placeholder="Como podemos chamar você?" required></div>
+    <div><label for="rua">Rua / Avenida</label><input id="rua" name="rua" type="text" autocomplete="address-line1" placeholder="Informe o nome da sua rua" required></div>
+    <div><label for="numero">Número</label><input id="numero" name="numero" type="text" placeholder="Número do imóvel (ou S/N)" required></div>
+    <div><label for="bairro">Bairro</label><input id="bairro" name="bairro" type="text" autocomplete="address-level3" placeholder="Seu bairro" required></div>
+    <div><label for="cidade">Cidade</label><input id="cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Sua cidade" required></div>
+    <div><label for="tipo">Tipo de material</label>
+     <select id="tipo" name="tipo" required>
+      <option value="">Selecione</option>
+      <option>Joias</option><option>Ouro</option><option>Prata</option><option>Outro / não tenho certeza</option>
+     </select></div>
+    <div><label for="desc">Descrição da peça</label><textarea id="desc" name="desc" placeholder="Ex.: tipo de peça, estado, se tem pedras, marcas ou gravações…" required></textarea></div>
+    <div class="warn" id="warn" role="alert"></div>
+    <button class="btn" type="submit">Continuar no WhatsApp</button>
+   </form>
   </div>
  </section>
 
@@ -127,29 +157,7 @@ footer .copy{margin-top:34px;font-size:.82rem;color:#6f695c}
   </div>
  </section>
 
- <section id="avaliacao" class="alt">
-  <div class="wrap">
-   <p class="eyebrow">Solicite sua avaliação</p>
-   <h2>Conte-nos sobre a sua peça</h2>
-   <div class="rule"></div>
-   <p class="note">Preencha os campos abaixo e continue no WhatsApp. Lá, você poderá enviar as fotos da peça na própria conversa. A avaliação e a negociação são feitas pela equipe.</p>
-   <form id="form" novalidate>
-    <div><label for="nome">Seu nome</label><input id="nome" name="nome" type="text" autocomplete="name" placeholder="Como podemos chamar você?" required></div>
-    <div><label for="rua">Rua / Avenida</label><input id="rua" name="rua" type="text" autocomplete="address-line1" placeholder="Informe o nome da sua rua" required></div>
-    <div><label for="numero">Número</label><input id="numero" name="numero" type="text" placeholder="Número do imóvel (ou S/N)" required></div>
-    <div><label for="bairro">Bairro</label><input id="bairro" name="bairro" type="text" autocomplete="address-level3" placeholder="Seu bairro" required></div>
-    <div><label for="cidade">Cidade</label><input id="cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Sua cidade" required></div>
-    <div><label for="tipo">Tipo de material</label>
-     <select id="tipo" name="tipo" required>
-      <option value="">Selecione</option>
-      <option>Joias</option><option>Ouro</option><option>Prata</option><option>Outro / não tenho certeza</option>
-     </select></div>
-    <div><label for="desc">Descrição da peça</label><textarea id="desc" name="desc" placeholder="Ex.: tipo de peça, estado, se tem pedras, marcas ou gravações…" required></textarea></div>
-    <div class="warn" id="warn" role="alert"></div>
-    <button class="btn" type="submit">Continuar no WhatsApp</button>
-   </form>
-  </div>
- </section>
+
 </main>
 
 <footer id="contato">
